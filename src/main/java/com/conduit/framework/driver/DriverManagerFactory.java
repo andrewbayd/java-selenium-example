@@ -9,9 +9,6 @@ public class DriverManagerFactory {
     public static synchronized DriverManager getManager(Browser browser) {
         if (Objects.isNull(DRIVER_MANAGER.get())) {
             switch (browser) {
-                case SAFARI:
-                    DRIVER_MANAGER.set(new SafariDriverManager());
-                    break;
                 case FIREFOX:
                     DRIVER_MANAGER.set(new FirefoxDriverManager());
                     break;

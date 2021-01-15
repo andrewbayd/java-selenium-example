@@ -11,8 +11,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class BrowserActions {
 
     private static final int DEFAULT_TIMEOUT = 30;
-    private WebDriver driver;
-    private WebDriverWait wait;
+    private final WebDriver driver;
+    private final WebDriverWait wait;
 
     public BrowserActions() {
         this.driver = DriverManagerFactory.getDriverManager().getDriver();
