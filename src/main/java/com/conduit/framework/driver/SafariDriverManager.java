@@ -8,10 +8,9 @@ import org.openqa.selenium.safari.SafariDriver;
 public class SafariDriverManager extends DriverManager{
 
     @Override
-    protected WebDriver createDriver() {
+    protected void createDriver() {
         WebDriverManager.getInstance(DriverManagerType.SAFARI).setup();
         DRIVER_POOL.set(new SafariDriver());
         DRIVER_POOL.get().manage().window().maximize();
-        return DRIVER_POOL.get();
     }
 }

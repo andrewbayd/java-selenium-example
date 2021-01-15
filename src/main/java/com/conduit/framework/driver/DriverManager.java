@@ -8,7 +8,7 @@ public abstract class DriverManager {
 
     protected static final ThreadLocal<WebDriver> DRIVER_POOL = new ThreadLocal<>();
 
-    protected abstract WebDriver createDriver();
+    protected abstract void createDriver();
 
     public synchronized WebDriver getDriver() {
         if (isPoolEmpty()) {
