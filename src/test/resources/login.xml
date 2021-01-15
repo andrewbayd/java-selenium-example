@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Login tests suite" data-provider-thread-count="5">
+    <parameter name="browser" value="chrome"/>
+    <test name="Login tests" parallel="methods">
+        <classes>
+            <class name="com.conduit.LoginTest"/>
+        </classes>
+    </test>
+</suite>
