@@ -4,6 +4,8 @@ import com.conduit.framework.driver.DriverManagerFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.html5.LocalStorage;
+import org.openqa.selenium.html5.WebStorage;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -38,6 +40,15 @@ public class BrowserActions {
 
     public void selectFromDropdownByText(By dropdown, String text) {
         new Select(findElement(dropdown)).selectByVisibleText(text);
+    }
+
+    public void setLocalStorage(String key, String value) {
+        LocalStorage localStorage = ((WebStorage) driver).getLocalStorage();
+        localStorage.setItem(key, value);
+    }
+
+    public void refreshPage() {
+        driver.navigate().refresh();
     }
 
 }

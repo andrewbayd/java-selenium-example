@@ -1,5 +1,6 @@
-package com.conduit;
+package com.conduit.login;
 
+import com.conduit.BaseTest;
 import com.conduit.models.User;
 import com.conduit.pages.HomePage;
 import org.testng.annotations.DataProvider;

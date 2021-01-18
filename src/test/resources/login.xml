@@ -3,7 +3,7 @@
     <parameter name="browser" value="chrome"/>
     <test name="Login tests" parallel="methods">
         <classes>
-            <class name="com.conduit.LoginTest"/>
+            <class name="com.conduit.login.LoginTest"/>
         </classes>
     </test>
 </suite>

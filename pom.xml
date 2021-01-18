@@ -17,6 +17,7 @@
         <hamcrest.version>2.2</hamcrest.version>
         <lombok.version>1.18.16</lombok.version>
         <logback.version>1.2.3</logback.version>
+        <rest-assured.version>4.3.0</rest-assured.version>
     </properties>
 
     <build>
@@ -39,6 +40,11 @@
             <version>${selenium.version}</version>
         </dependency>
         <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>${rest-assured.version}</version>
+        </dependency>
+        <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>${testhg.version}</version>
@@ -53,7 +59,6 @@
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest</artifactId>
             <version>${hamcrest.version}</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
