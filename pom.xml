@@ -20,9 +20,10 @@
         <hamcrest.version>2.2</hamcrest.version>
         <lombok.version>1.18.16</lombok.version>
         <logback.version>1.2.3</logback.version>
-        <rest-assured.version>4.3.0</rest-assured.version>
+        <rest-assured.version>4.3.3</rest-assured.version>
         <allure-maven.verion>2.10.0</allure-maven.verion>
         <allure-testng.version>2.13.5</allure-testng.version>
+        <allure-rest-assured.version>2.13.8</allure-rest-assured.version>
         <aspectj.version>1.9.4</aspectj.version>
     </properties>
 
@@ -108,6 +109,11 @@
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-testng</artifactId>
             <version>${allure-testng.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-rest-assured</artifactId>
+            <version>${allure-rest-assured.version}</version>
         </dependency>
     </dependencies>
 
