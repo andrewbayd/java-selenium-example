@@ -1,19 +1,18 @@
 package com.conduit.api.clients;
 
 import com.conduit.models.User;
-
-import java.util.HashMap;
-import java.util.Map;
+import com.conduit.models.UserAuthData;
 
 import static io.restassured.RestAssured.given;
 import static io.restassured.http.ContentType.JSON;
 
 public class AuthClient {
 
-    public String getToken(String email,  String password) {
+    public String getToken(User user) {
+        UserAuthData userAuthData = new UserAuthData(user);
         return given().
                 contentType(JSON).
-                body(getUserJson(email, password)).
+                body(userAuthData).
         when().
                 post("https://conduit.productionready.io/api/users/login").
         then().
@@ -21,18 +20,5 @@ public class AuthClient {
         extract().
                 path("user.token");
 
-    }
-
-    public String getToken(User user) {
-        return getToken(user.getEmail(), user.getPassword());
-    }
-
-    private Map<String, Object> getUserJson(String email, String password) {
-        Map<String, String> userCreds = new HashMap<>();
-        userCreds.put("email", email);
-        userCreds.put("password", password);
-        Map<String, Object> userJson = new HashMap<>();
-        userJson.put("user", userCreds);
-        return userJson;
     }
 }

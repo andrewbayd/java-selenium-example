@@ -11,13 +11,9 @@ import static lombok.AccessLevel.PRIVATE;
 @NoArgsConstructor(access = PRIVATE)
 public class AuthHelper {
 
-    public static String getAuthToken(String email, String password) {
-        log.info(String.format("Getting jwtToken for %s", email));
-        AuthClient authClient = new AuthClient();
-        return authClient.getToken(email, password);
-    }
-
     public static String getAuthToken(User user) {
-        return getAuthToken(user.getEmail(), user.getPassword());
+        log.info(String.format("Getting jwtToken for %s", user.getEmail()));
+        AuthClient authClient = new AuthClient();
+        return authClient.getToken(user);
     }
 }

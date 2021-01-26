@@ -38,7 +38,6 @@ public abstract class BasePage<T> {
         return (T) this;
     }
 
-    @Step("Open page logged in as {user}")
     public T openLoggedInAs(User user) {
         open();
         setToken(getAuthToken(user));
