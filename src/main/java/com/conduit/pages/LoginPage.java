@@ -1,5 +1,6 @@
 package com.conduit.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
 public class LoginPage extends BasePage<LoginPage> {
@@ -8,10 +9,11 @@ public class LoginPage extends BasePage<LoginPage> {
     private static final By SIGN_IN_BUTTON = By.cssSelector("[type=\"submit\"]");
 
     @Override
-    protected String getUrl() {
+    protected String url() {
         return "https://angular.realworld.io/login";
     }
 
+    @Step("Perform login as {email}")
     public HomePage loginAs(String email, String password) {
         browser.findClickableElement(EMAIL_FIELD).sendKeys(email);
         browser.findClickableElement(PASSWORD_FIELD).sendKeys(password);

@@ -11,6 +11,9 @@
     <properties>
         <java.source>11</java.source>
         <java.target>11</java.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven-compiler.version>3.8.1</maven-compiler.version>
+        <maven-surefire.version>3.0.0-M4</maven-surefire.version>
         <selenium.version>3.141.59</selenium.version>
         <testhg.version>6.14.3</testhg.version>
         <webdriver-manager.version>4.2.2</webdriver-manager.version>
@@ -18,6 +21,9 @@
         <lombok.version>1.18.16</lombok.version>
         <logback.version>1.2.3</logback.version>
         <rest-assured.version>4.3.0</rest-assured.version>
+        <allure-maven.verion>2.10.0</allure-maven.verion>
+        <allure-testng.version>2.13.5</allure-testng.version>
+        <aspectj.version>1.9.4</aspectj.version>
     </properties>
 
     <build>
@@ -25,9 +31,37 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler.version}</version>
                 <configuration>
                     <source>${java.source}</source>
                     <target>${java.target}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire.version}</version>
+                <configuration>
+                    <argLine>
+                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                    </argLine>
+                    <trimStackTrace>false</trimStackTrace>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.aspectj</groupId>
+                        <artifactId>aspectjweaver</artifactId>
+                        <version>${aspectj.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>${allure-maven.verion}</version>
+                <configuration>
+                    <reportVersion>${allure-testng.version}</reportVersion>
+                    <resultsDirectory>${project.build.directory}/allure-results</resultsDirectory>
                 </configuration>
             </plugin>
         </plugins>
@@ -69,6 +103,11 @@
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>${logback.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-testng</artifactId>
+            <version>${allure-testng.version}</version>
         </dependency>
     </dependencies>
 

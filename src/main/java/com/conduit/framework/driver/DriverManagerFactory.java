@@ -1,7 +1,12 @@
 package com.conduit.framework.driver;
 
+import lombok.NoArgsConstructor;
+
 import java.util.Objects;
 
+import static lombok.AccessLevel.PRIVATE;
+
+@NoArgsConstructor(access = PRIVATE)
 public class DriverManagerFactory {
 
     private static final ThreadLocal<DriverManager> DRIVER_MANAGER = new ThreadLocal<>();

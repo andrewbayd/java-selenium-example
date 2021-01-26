@@ -1,6 +1,7 @@
 package com.conduit.framework;
 
 import com.conduit.framework.driver.DriverManagerFactory;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -21,6 +22,7 @@ public class BrowserActions {
         this.wait = new WebDriverWait(driver, DEFAULT_TIMEOUT);
     }
 
+    @Step("Open {url}")
     public void openPage(String url) {
         driver.get(url);
     }

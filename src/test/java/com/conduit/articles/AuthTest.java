@@ -10,7 +10,7 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class AuthTest extends BaseTest {
 
-    @Test
+    @Test(description = "Test auth client")
     void testAuthClient() {
         HomePage homePage = new HomePage();
         homePage.openLoggedInAs(TEST_USER_1);

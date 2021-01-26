@@ -2,7 +2,7 @@ package com.conduit.pages;
 
 import com.conduit.framework.BrowserActions;
 import com.conduit.models.User;
-import com.conduit.utils.AuthHelper;
+import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 
 import static com.conduit.utils.AuthHelper.getAuthToken;
@@ -15,27 +15,30 @@ public abstract class BasePage<T> {
         this.browser = new BrowserActions();
     }
 
-    protected abstract String getUrl();
+    protected abstract String url();
 
     public T open() {
-        String url = getUrl();
+        String url = url();
         log.info(String.format("Opening %s", url));
         browser.openPage(url);
         return (T) this;
     }
 
+    @Step("Set jwtToken to local storage")
     public T setToken(String token) {
-        log.info("Setting jwtToken to Local Storage");
+        log.info("Setting jwtToken to local storage");
         browser.setLocalStorage("jwtToken", token);
         return (T) this;
     }
 
+    @Step("Refresh a page")
     public T refresh() {
         log.info("Refreshing a page");
         browser.refreshPage();
         return (T) this;
     }
 
+    @Step("Open page logged in as {user}")
     public T openLoggedInAs(User user) {
         open();
         setToken(getAuthToken(user));
