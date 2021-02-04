@@ -7,15 +7,18 @@ import com.conduit.utils.TestListener;
 import lombok.extern.slf4j.Slf4j;
 import org.testng.annotations.*;
 
+import static java.lang.Boolean.parseBoolean;
+import static java.lang.System.getProperty;
+
 @Slf4j
 @Listeners(TestListener.class)
 public class BaseTest {
+
     private DriverManager driverManager;
 
-    @Parameters("browser")
     @BeforeMethod
-    protected void beforeMethod(@Optional("chrome") String browser) {
-        getDriver(browser);
+    protected void beforeMethod() {
+        getDriver(getProperty("browser"));
     }
 
     @AfterMethod(alwaysRun = true)
@@ -24,9 +27,16 @@ public class BaseTest {
     }
 
     protected void getDriver(String browser) {
-        log.info(String.format("Creating driver for browser %s...", browser));
         driverManager = DriverManagerFactory.getManager(Browser.valueOf(browser.toUpperCase()));
-        driverManager.getDriver();
+        String remoteProperty = getProperty("remote");
+        boolean remote = parseBoolean(remoteProperty);
+        if (remote) {
+            log.info(String.format("Creating remote driver for browser %s...", browser));
+            driverManager.getDriver(getProperty("remoteUrl"));
+        } else {
+            log.info(String.format("Creating local driver for browser %s...", browser));
+            driverManager.getDriver();
+        }
     }
 
     protected void quitDriver() {

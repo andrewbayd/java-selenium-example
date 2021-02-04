@@ -7,6 +7,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.html5.LocalStorage;
 import org.openqa.selenium.html5.WebStorage;
+import org.openqa.selenium.remote.RemoteExecuteMethod;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.remote.html5.RemoteWebStorage;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -45,7 +48,9 @@ public class BrowserActions {
     }
 
     public void setLocalStorage(String key, String value) {
-        LocalStorage localStorage = ((WebStorage) driver).getLocalStorage();
+        RemoteExecuteMethod executeMethod = new RemoteExecuteMethod((RemoteWebDriver) driver);
+        RemoteWebStorage webStorage = new RemoteWebStorage(executeMethod);
+        LocalStorage localStorage = webStorage.getLocalStorage();
         localStorage.setItem(key, value);
     }
 
