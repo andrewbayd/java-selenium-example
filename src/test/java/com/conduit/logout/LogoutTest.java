@@ -4,10 +4,8 @@ import com.conduit.BaseTest;
 import com.conduit.dataproviders.CredentialsProvider;
 import com.conduit.models.User;
 import com.conduit.pages.HomePage;
-import com.conduit.testdata.TestUser;
 import org.testng.annotations.Test;
 
-import static com.conduit.testdata.TestUser.TEST_USER_1;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
