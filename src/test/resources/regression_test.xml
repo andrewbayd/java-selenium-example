@@ -4,6 +4,7 @@
     <test name="Login tests" parallel="methods">
         <classes>
             <class name="com.conduit.login.LoginTest"/>
+            <class name="com.conduit.logout.LogoutTest"/>
         </classes>
     </test>
 </suite>

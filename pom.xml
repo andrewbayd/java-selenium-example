@@ -47,6 +47,9 @@
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                     </argLine>
                     <trimStackTrace>false</trimStackTrace>
+                    <systemPropertyVariables>
+                        <baseUrl>https://angular.realworld.io</baseUrl>
+                    </systemPropertyVariables>
                 </configuration>
                 <dependencies>
                     <dependency>
