@@ -28,20 +28,17 @@ public class BaseTest {
 
     protected void getDriver(String browser) {
         driverManager = DriverManagerFactory.getManager(Browser.valueOf(browser.toUpperCase()));
-        String remoteProperty = getProperty("remote");
-        boolean remote = parseBoolean(remoteProperty);
-        if (remote) {
+        if (parseBoolean(getProperty("remote"))) {
             log.info(String.format("Creating remote driver for browser %s...", browser));
             driverManager.getDriver(getProperty("remoteUrl"));
-        } else {
-            log.info(String.format("Creating local driver for browser %s...", browser));
-            driverManager.getDriver();
+            return;
         }
+        log.info(String.format("Creating local driver for browser %s...", browser));
+        driverManager.getDriver();
     }
 
     protected void quitDriver() {
         log.info("Stopping browser...");
         driverManager.quitDriver();
     }
-
 }
