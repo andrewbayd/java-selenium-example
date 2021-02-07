@@ -1,0 +1,25 @@
+# This workflow will run regression tests suite
+
+name: Run regression tests
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Set up JDK 11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    
+    - name: Set up Selenium grid
+      run: docker-compose up -d --scale chrome=4
+    
+    - name: Run tests
+      run: mvn clean test -Dremote
