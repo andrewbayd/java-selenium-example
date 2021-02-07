@@ -19,7 +19,7 @@ public class SettingsPage extends BasePage<SettingsPage> {
     @Step("Logout from account")
     public HomePage logout() {
         log.info("Logging out from account");
-        browser.findClickableElement(LOGOUT_BUTTON).click();
+        browser.click(LOGOUT_BUTTON);
         return new HomePage();
     }
 }

@@ -1,12 +1,11 @@
 package com.conduit.framework;
 
-import com.conduit.framework.driver.DriverManagerFactory;
+import com.conduit.framework.driver.DriverManager;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.html5.LocalStorage;
-import org.openqa.selenium.html5.WebStorage;
 import org.openqa.selenium.remote.RemoteExecuteMethod;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.remote.html5.RemoteWebStorage;
@@ -21,7 +20,7 @@ public class BrowserActions {
     private final WebDriverWait wait;
 
     public BrowserActions() {
-        this.driver = DriverManagerFactory.getDriverManager().getDriver();
+        this.driver = DriverManager.getDriverFactory().getDriver();
         this.wait = new WebDriverWait(driver, DEFAULT_TIMEOUT);
     }
 
@@ -38,9 +37,16 @@ public class BrowserActions {
         return wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
 
-    public WebElement findElementContains(String text) {
-        By locator = By.xpath("//*[contains(text(),'" + text + "')]");
-        return findElement(locator);
+    public void click(By locator) {
+        findClickableElement(locator).click();
+    }
+
+    public void sendKeys(By locator, CharSequence... keysToSend) {
+        findClickableElement(locator).sendKeys(keysToSend);
+    }
+
+    public boolean isElementDisplayed(By locator) {
+        return findElement(locator).isDisplayed();
     }
 
     public void selectFromDropdownByText(By dropdown, String text) {

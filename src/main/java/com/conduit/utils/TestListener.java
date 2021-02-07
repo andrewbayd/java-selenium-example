@@ -1,6 +1,6 @@
 package com.conduit.utils;
 
-import com.conduit.framework.driver.DriverManagerFactory;
+import com.conduit.framework.driver.DriverManager;
 import io.qameta.allure.Attachment;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.OutputType;
@@ -21,7 +21,7 @@ public class TestListener extends TestListenerAdapter {
     }
 
     private void attachScreenshot() {
-        WebDriver driver = DriverManagerFactory.getDriverManager().getDriver();
+        WebDriver driver = DriverManager.getDriverFactory().getDriver();
         if (isNull(driver)) {
             log.error("Driver instance is null, cannot take a screenshot");
             return;

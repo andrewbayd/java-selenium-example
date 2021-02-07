@@ -1,8 +1,8 @@
 package com.conduit;
 
 import com.conduit.framework.driver.Browser;
+import com.conduit.framework.driver.DriverFactory;
 import com.conduit.framework.driver.DriverManager;
-import com.conduit.framework.driver.DriverManagerFactory;
 import com.conduit.utils.TestListener;
 import lombok.extern.slf4j.Slf4j;
 import org.testng.annotations.*;
@@ -14,7 +14,7 @@ import static java.lang.System.getProperty;
 @Listeners(TestListener.class)
 public class BaseTest {
 
-    private DriverManager driverManager;
+    private DriverFactory driverFactory;
 
     @BeforeMethod
     protected void beforeMethod() {
@@ -27,18 +27,18 @@ public class BaseTest {
     }
 
     protected void getDriver(String browser) {
-        driverManager = DriverManagerFactory.getManager(Browser.valueOf(browser.toUpperCase()));
+        driverFactory = DriverManager.getFactory(Browser.valueOf(browser.toUpperCase()));
         if (parseBoolean(getProperty("remote"))) {
             log.info(String.format("Creating remote driver for browser %s...", browser));
-            driverManager.getDriver(getProperty("remoteUrl"));
+            driverFactory.getRemoteDriver(getProperty("remoteUrl"));
             return;
         }
         log.info(String.format("Creating local driver for browser %s...", browser));
-        driverManager.getDriver();
+        driverFactory.getDriver();
     }
 
     protected void quitDriver() {
         log.info("Stopping browser...");
-        driverManager.quitDriver();
+        driverFactory.quitDriver();
     }
 }

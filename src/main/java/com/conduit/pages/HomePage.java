@@ -6,18 +6,19 @@ import org.openqa.selenium.By;
 
 @Slf4j
 public class HomePage extends BasePage<HomePage> {
+
+    public static final String PATH = "/";
+
     private static final By BANNER = By.className("banner");
 
     @Override
     protected String getPath() {
-        return "/";
+        return PATH;
     }
 
     @Step("Check banner is displayed")
     public boolean isBannerDisplayed() {
         log.info("Checking if banner is displayed on Home page");
-        return browser
-                .findElement(BANNER)
-                .isDisplayed();
+        return browser.isElementDisplayed(BANNER);
     }
 }

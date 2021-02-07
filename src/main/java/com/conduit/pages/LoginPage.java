@@ -21,9 +21,9 @@ public class LoginPage extends BasePage<LoginPage> {
     @Step("Perform login as {email}")
     public HomePage loginAs(String email, String password) {
         log.info("Logging in as {}", email);
-        browser.findClickableElement(EMAIL_FIELD).sendKeys(email);
-        browser.findClickableElement(PASSWORD_FIELD).sendKeys(password);
-        browser.findClickableElement(SIGN_IN_BUTTON).click();
+        browser.sendKeys(EMAIL_FIELD, email);
+        browser.sendKeys(PASSWORD_FIELD, password);
+        browser.click(SIGN_IN_BUTTON);
         return new HomePage();
     }
 }
