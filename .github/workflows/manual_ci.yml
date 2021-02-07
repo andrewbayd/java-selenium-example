@@ -4,9 +4,6 @@ name: Run regression tests
 
 on:
   workflow_dispatch:
-  pull_request:
-    branches: 
-      - master
 
 jobs:
   build:
@@ -26,9 +23,3 @@ jobs:
     
     - name: Run tests
       run: mvn clean test -Dremote
-    
-    - name: Generate report
-      uses: afiore/action-allure-report@v0.1.0
-      with:
-        results-dir: target/allure-results
-        report-dir: target/allure-report
