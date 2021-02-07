@@ -31,4 +31,4 @@ jobs:
       uses: afiore/action-allure-report@v0.1.0
       with:
         results-dir: target/allure-results
-        report-dir: targer/allure-report
+        report-dir: target/allure-report
